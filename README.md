@@ -72,12 +72,9 @@ The script includes a `main()` function. By default the script may reference a G
 - MPS issues on Apple Silicon: ensure PyTorch build supports MPS and avoid float64 tensors; the script converts to `float32` for MPS compatibility.
 
 **Next steps / Recommendations**
-- Add a `requirements.txt` or `pyproject.toml` for reproducible installs.
 - Add a small example script/notebook that demonstrates saving predictions to `outputs/` as CSV.
 - Optionally include unit tests for preprocessing functions and a small sample dataset for CI.
 - The script has some issues with MPS and float64 tensors. The issues need to be fixed in future Darts/PyTorch releases.
-  
-- 
 
 If you'd like, I can:
 - Add a `requirements.txt` with pinned versions.

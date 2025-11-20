@@ -44,16 +44,16 @@ Note: On macOS with Apple Silicon, installing PyTorch with MPS support requires 
 - The included `run_python_script.ipynb` demonstrates mounting Google Drive, installing `darts`, and running `tft_prediction.py` on Colab.
 - If running on Colab, copy or upload the `tft_prediction.py` to the Colab environment and update path variables to point to mounted Drive locations.
 
-## Key configuration points in `tft_prediction.py`**
+### Key configuration points in `tft_prediction.py`
 - `TFTPredictorConfig` contains paths for the three models and `data_path`. Update values to your local paths before running.
 - Prediction lengths are set for `'1h'` (1), `'24h'` (24), and `'3d'` (72).
 - The script attempts to choose an appropriate device (CUDA / CPU). Make sure the installed PyTorch supports your hardware.
 
-## Outputs**
+### Outputs
 - The script prints progress and evaluation metrics for each horizon.
 - Predicted values are returned as NumPy arrays and Darts `TimeSeries` objects inside the script; adapt the script to save predictions to CSV if needed.
 
-## Troubleshooting
+### Troubleshooting
 - FileNotFoundError: Verify the `data_path` points to `data/SeoulBikeData.csv` and model paths exist.
 - Darts or PyTorch import errors: Check your installed package versions and the Python interpreter. Use the Colab notebook for an easy environment that already installs `darts`.
 - MPS issues on Apple Silicon: ensure PyTorch build supports MPS and avoid float64 tensors; the script converts to `float32` for MPS compatibility.

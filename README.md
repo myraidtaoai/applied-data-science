@@ -3,14 +3,20 @@
 A small project demonstrating Temporal Fusion Transformer (TFT) predictions for hourly bike rental demand in Seoul. The repository contains a prediction script (`tft_prediction.py`), example notebooks, training artifacts (pretrained models), and the dataset used for inference.
 
 **Repository structure**
-- `tft_prediction.py` — TFT prediction pipeline (data preprocessing, model loading, scaling, inference, evaluation)
-- `run_python_script.ipynb` — Notebook that shows how to run `tft_prediction.py` (Colab-oriented) due to the need to use GPU acceleration and the compatibility considerations of GPU (There are some issues with MPS support on Apple Silicon).
-- `Seoul_bike_prediction.ipynb` — Notebook with prediction examples using varisous models and evaluation metrics.
-- `data/SeoulBikeData.csv` — Raw dataset used for preprocessing and predictions
-- `models/` — Saved model checkpoints and `.pt` files used for inference:
-  - `tft_1h.pt`, `tft_1h.pt.ckpt`
-  - `tft_24h.pt`, `tft_24h.pt.ckpt`
-  - `tft_3d.pt`, `tft_3d.pt.ckpt`
+- `tft_prediction.py` — Main prediction pipeline. Performs data loading, preprocessing and feature engineering, converts data to Darts `TimeSeries`, scales data, loads pretrained TFT models (multiple horizons), runs inference and prints evaluation metrics.
+- `run_python_script.ipynb` — Colab-oriented notebook that installs dependencies, mounts Google Drive, copies `tft_prediction.py` into the Colab environment and runs it. Useful for running the pipeline on Colab with mounted Drive.
+- `Seoul_bike_prediction.ipynb` — Notebook with prediction examples, EDA and model comparisons (visualizations and evaluation metrics).
+- `notebooks/` — Folder containing analysis notebooks:
+  - `notebooks/Prophet_Prediction.ipynb` — Prophet experiment notebook (hourly, daily, 3-day forecasts using Darts' Prophet wrapper).
+  - `notebooks/SeoulBikeMidReport.ipynb` — Mid-report notebook with EDA, summary statistics and key visualizations.
+- `data/` — Data folder. Contains `data/SeoulBikeData.csv` (raw CSV dataset used across notebooks and the prediction script).
+- `models/` — Saved model artifacts (used for inference):
+  - `tft_1h.pt`, `tft_1h.pt.ckpt`  — 1-hour horizon TFT model
+  - `tft_24h.pt`, `tft_24h.pt.ckpt` — 24-hour horizon TFT model
+  - `tft_3d.pt`, `tft_3d.pt.ckpt`  — 3-day horizon TFT model
+- `requirements.txt` — Pinned Python dependencies for reproducible installs.
+- `README.md` — Project overview, usage and notes (this file).
+
 
 **What this code does**
 - Loads raw Seoul bike data from `data/SeoulBikeData.csv`.
@@ -83,11 +89,4 @@ If you'd like, I can:
 
 ---
 Generated from project files. If you'd like changes or a more detailed README (installation with exact pinned versions, CLI usage, or examples), tell me which parts to expand.
-
-**Prophet Experiment**
-- **Notebook**: `Prophet_Prediction.ipynb` — an end-to-end exploration using Darts' `Prophet` wrapper for hourly, daily and 3-day aggregated forecasts.
-- **What it does**: Preprocesses the same `SeoulBikeData.csv` dataset, creates time series and covariates, and trains/evaluates Prophet models for multiple horizons (hourly, daily, 3-day).
-- **Modeling details**: The notebook demonstrates how to configure Prophet seasonality (hourly/daily/weekly/yearly), add covariates (monthly cyclic features), and use `historical_forecasts()` for rolling/expanding-window evaluation.
-- **Evaluation metrics**: The notebook computes `MAE`, `RMSE`, `MAPE` (where applicable), `sMAPE`, and `R2` to assess forecast performance.
-- **How to run**: Open `Prophet_Prediction.ipynb` in Colab or locally. In Colab the notebook installs required packages and mounts Google Drive; locally, ensure you have Darts and Prophet installed as in the requirements above.
 

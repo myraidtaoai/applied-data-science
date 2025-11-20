@@ -1,0 +1,31 @@
+# Pinned dependencies for the Seoul Bike Rental forecasting project
+# Adjust PyTorch according to your platform (CPU/CUDA/MPS). See https://pytorch.org/
+
+# Core ML libraries
+torch==2.2.0
+# Darts wrapper around PyTorch for time series forecasting
+darts==0.26.0
+
+# Prophet (via the `prophet` PyPI package)
+prophet==1.2.3
+
+# Data processing and utilities
+pandas==2.2.2
+numpy==1.25.2
+polars==0.18.6
+pyarrow==12.0.1
+
+# Modeling and evaluation
+scikit-learn==1.3.2
+lightgbm==4.0.0
+
+# Visualization
+matplotlib==3.8.1
+seaborn==0.12.2
+
+# Notebook / convenience
+tqdm==4.66.1
+jupyterlab==4.3.0
+
+# Optional: install a specific darts extras line if using torch integration
+# pip install "darts[torch]==0.26.0"  # alternative installation form

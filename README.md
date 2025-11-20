@@ -53,7 +53,7 @@ Note: On macOS with Apple Silicon, installing PyTorch with MPS support requires 
 - The script prints progress and evaluation metrics for each horizon.
 - Predicted values are returned as NumPy arrays and Darts `TimeSeries` objects inside the script; adapt the script to save predictions to CSV if needed.
 
-### Troubleshooting
+## Troubleshooting
 - FileNotFoundError: Verify the `data_path` points to `data/SeoulBikeData.csv` and model paths exist.
 - Darts or PyTorch import errors: Check your installed package versions and the Python interpreter. Use the Colab notebook for an easy environment that already installs `darts`.
 - MPS issues on Apple Silicon: ensure PyTorch build supports MPS and avoid float64 tensors; the script converts to `float32` for MPS compatibility.
@@ -61,6 +61,6 @@ Note: On macOS with Apple Silicon, installing PyTorch with MPS support requires 
 ## Next steps / Recommendations
 - Add a small example script/notebook that demonstrates saving predictions to `outputs/` as CSV.
 - Optionally include unit tests for preprocessing functions and a small sample dataset for CI.
-- The script has some issues with MPS and float64 tensors. The issues need to be fixed in future version.
+- The `tft_prediction.py` script still has some issues with MPS and float64 tensors. The issues need to be fixed in future version.
 - Save example predicted CSV outputs under an `outputs/` folder.
 
